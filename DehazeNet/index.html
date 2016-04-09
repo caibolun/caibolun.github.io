@@ -1,0 +1,76 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-------------------------------------------------------------------->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../css/main.css" rel="stylesheet" media="all">
+<meta name="description" content="DehazeNet: An End-to-End System for Single Image Haze Removal" />
+<title>DehazeNet: An End-to-End System for Single Image Haze Removal</title>
+<style type="text/css">
+.auto-style12 {
+	color: #1F82A9;
+}
+</style>
+</head>
+<!-------------------------------------------------------------------->
+
+<body>
+<h2 class="auto-style1">DehazeNet: An End-to-End System for Single Image Haze Removal</h2>
+<p class="auto-style7"  align="center"><a href="http://caibolun.github.io/">Bolun Cai</a> &nbsp;&nbsp;&nbsp;&nbsp;Xiangmin Xu&nbsp;&nbsp;&nbsp;&nbsp;Kui Jia&nbsp;&nbsp;&nbsp;&nbsp;Chunmei Qing&nbsp;&nbsp;&nbsp;&nbsp;Dacheng Tao</p>
+<p class="auto-style7"  align="center">South China University of Technology</p>
+<p align=left>&nbsp;</p>
+<p align="center">
+<table style="width:840px" align="center">
+<tr>
+	<td><img width=800px alt="" src="dehazenet.jpg"></td>	
+</tr>
+<tr>
+	<td><p class="auto-style5">The architecture of DehazeNet. DehazeNet conceptually consists of four sequential operations (feature extraction, multi-scale mapping, local extremum and non-linear regression), which is constructed by 3 convolution layers, a max-pooling, a Maxout unit and a BReLU activation function.</p></td>
+</tr>
+</table>
+
+<p class="style2"><strong><span class="auto-style6">Abstract</span></strong></p>
+<p class="auto-style5">Single image haze removal is a challenging ill-posed problem. Existing methods use various constraints/priors to get plausible dehazing solutions. The key to achieve haze removal is to estimate a medium transmission map for an input hazy image. In this paper, we propose a trainable end-to-end system called DehazeNet, for medium transmission estimation. DehazeNet takes a hazy image as input, and outputs its medium transmission map that is subsequently used to recover a haze-free image via atmospheric scattering model. DehazeNet adopts Convolutional Neural Networks (CNN) based deep architecture, whose layers are specially designed to embody the established assumptions/priors in image dehazing. Specifically, layers of Maxout units are used for feature extraction, which can generate almost all haze-relevant features. We also propose a novel nonlinear activation function in DehazeNet, called Bilateral Rectified Linear Unit (BReLU), which is able to improve the quality of recovered haze-free image. We establish connections between components of the proposed DehazeNet and those used in existing methods. Experiments on benchmark images show that DehazeNet achieves superior performance over existing methods, yet keeps efficient and easy to use.</p>
+<p class="auto-style5">&nbsp;</p>
+
+
+
+<p class="auto-style4" id=results><strong>Results</strong></p>
+<img width=960px src="result.jpg">
+<p align=left>&nbsp;</p>
+<p class="auto-style4" id=quantitative><strong>Quantitative Comparison</strong></p>
+<img width=800px alt="" src="mse.jpg"></td>
+<p align=left>&nbsp;</p>
+
+<p id="downloads", class="auto-style4"><strong>Downloads</strong></p>
+
+<table cellSpacing=4 cellPadding=2 border=0 style="width: 90%">
+<tr COLSPAN="2">
+<td align="center" valign="center">
+<img src="paper_thumbnail.jpg" align="middle" alt="Snapshot for paper" class="pdf" width="170" /></td>
+<td align="left" class="auto-style5">
+&quot;DehazeNet: An End-to-End System for Single Image Haze Removal&quot;<br>
+Bolun Cai, Xiangmin Xu, Kui Jia, Chunmei Qing, Dacheng Tao<br>
+Preprint arXiv:1601.07661, 2016<br>
+<img alt="" height="32" src="../images/pdf_icon.gif" width="31">&nbsp;&nbsp;&nbsp;[<a href="../papers/DehazeNet.pdf">Paper (4.42M)</a>]<br>
+<img alt="" height="32" src="../images/pdf_icon.gif" width="31">&nbsp;&nbsp;&nbsp;[<a href="./DehazeNet_sup.pdf">Supplementary file (5.50M)</a>]<br>
+<img alt="" height="36" src="../images/matlab.gif" width="36">&nbsp;&nbsp;[<!--<a href="https://github.com/caibolun/DehazeNet/archive/master.zip">-->Code] <br>
+&nbsp;<img alt="" height="35" src="../images/data_icon.jpg" width="30"> &nbsp;&nbsp;[<a href="../DehazeSet/index.html">DehazeSet</a>] <font class="highlight">(NEW)</font> <br>
+</td>
+</tr>
+</table>
+
+<br>	
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<hr/>
+
+<p class="auto-style1"><font color="#999999">Last update: April 07, 2016</font></p>
+
+
+</body>
+
+</html>
