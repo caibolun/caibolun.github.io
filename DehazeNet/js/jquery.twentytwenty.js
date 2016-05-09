@@ -9,8 +9,6 @@
       var sliderOrientation = options.orientation;
       var beforeDirection = (sliderOrientation === 'vertical') ? 'down' : 'left';
       var afterDirection = (sliderOrientation === 'vertical') ? 'up' : 'right';
-      
-      
       container.wrap("<div class='twentytwenty-wrapper twentytwenty-" + sliderOrientation + "'></div>");
       container.append("<div class='twentytwenty-overlay'></div>");
       var beforeImg = container.find("img:first");
