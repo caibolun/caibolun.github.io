@@ -543,10 +543,17 @@ Preprint arXiv:1601.07661, 2016<br><br>
 <script src="js/jquery.event.move.js"></script>
 <script src="js/jquery.twentytwenty.js"></script>
 <script src="js/owl.carousel.min.js"></script>
-
 <script>
 $(function(){
 	$('.twentytwenty-container').twentytwenty();
+});
+</script>
+
+<script>
+$(function(){
+	$('.owl-carousel').owlCarousel({items: 1,navigation: true
+	}).hover(function(){$('.owl-buttons').show();
+	}, function(){$('.owl-buttons').hide();});
 });
 </script>
 </body>
