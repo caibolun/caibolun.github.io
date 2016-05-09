@@ -547,8 +547,11 @@ Preprint arXiv:1601.07661, 2016<br><br>
 window.onload =function(){
 $('.twentytwenty-container').twentytwenty();
 }
-$('.owl-carousel').owlCarousel({items: 1,navigation: true});
-$('.owl-buttons').show();
+$(function(){
+	$('.owl-carousel').owlCarousel({items: 1,navigation: true
+	}).hover(function(){$('.owl-buttons').show();
+	}, function(){$('.owl-buttons').hide();});
+});
 </script>
 </body>
 
