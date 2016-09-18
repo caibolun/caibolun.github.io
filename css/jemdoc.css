@@ -372,3 +372,9 @@ table.imgtable, table.imgtable td {
     border: none;
     text-align: left;
 }
+
+.highlight{
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	font-weight: bold;
+	color: #FF0000;
+}
