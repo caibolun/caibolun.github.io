@@ -1,0 +1,107 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+    <title>HDR Tone Mapping</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+</head>
+<body>
+	<div id='wrap'>
+		<br/><br/>
+		<p style='text-align:left;'><a href="index.html">Back to the main page</a></p>
+		<h1>HDR Tone Mapping</h1>
+		<p style='text-align:left;' class='introduction'>One of the challenges in image processing is the rendering of a High-Dynamic Range (HDR) scene on a conventional Low-Dynamic Range (LDR) display. RoG smoothing is also easily harnessed to perform tone mapping of HDR images. Based on LCIS, the LCIS-based decomposition is simply replaced by our RoG-based smoothing. Since multi-exposure fusion is the major problem to display surface reflections for HDR tone mapping, an exact base-layer decomposition is the key to produce a LDR image.  <b>(The saturations and exposures of these methods were manually adjusted to match the overall appearance.)</b></p>
+		<br/>
+		<table class='resultsTable'>
+			<tr style='height: 50px'>
+				<td>Input</td>
+				<td>OpenEXR</td>
+				<td>RoG</td>
+			</tr>
+			<tr>
+				<td><a href='hdr/hdr_apartment.hdr.jpg'><img class='resultImg' src='hdr/hdr_apartment.hdr.jpg'/></a></td>
+				<td><a href='hdr/apartment.jpg'><img class='resultImg' src='hdr/apartment.jpg'/></a></td>
+				<td><a href='hdr/ldr_apartment.hdr.jpg'><img class='resultImg' src='hdr/ldr_apartment.hdr.jpg'/></a></td>
+			</tr>
+			<!--
+			<tr>
+				<td><a href='hdr/hdr_atriumNight.hdr.jpg'><img class='resultImg' src='hdr/hdr_atriumNight.hdr.jpg'/></a></td>
+				<td><a href='hdr/atriumNight.jpg'><img class='resultImg' src='hdr/atriumNight.jpg'/></a></td>
+				<td><a href='hdr/ldr_atriumNight.hdr.jpg'><img class='resultImg' src='hdr/ldr_atriumNight.hdr.jpg'/></a></td>
+			</tr>
+			<tr>
+				<td><a href='hdr/hdr_bigFogMap.hdr.jpg'><img class='resultImg' src='hdr/hdr_bigFogMap.hdr.jpg'/></a></td>
+				<td><a href='hdr/bigFogMap.jpg'><img class='resultImg' src='hdr/bigFogMap.jpg'/></a></td>
+				<td><a href='hdr/ldr_bigFogMap.hdr.jpg'><img class='resultImg' src='hdr/ldr_bigFogMap.hdr.jpg'/></a></td>
+			</tr>
+			-->
+			<tr>
+				<td><a href='hdr/hdr_dani_belgium.hdr.jpg'><img class='resultImg' src='hdr/hdr_dani_belgium.hdr.jpg'/></a></td>
+				<td><a href='hdr/dani_belgium.jpg'><img class='resultImg' src='hdr/dani_belgium.jpg'/></a></td>
+				<td><a href='hdr/ldr_dani_belgium.hdr.jpg'><img class='resultImg' src='hdr/ldr_dani_belgium.hdr.jpg'/></a></td>
+			</tr>
+			
+			<tr>
+				<td><a href='hdr/hdr_dani_cathedral.hdr.jpg'><img class='resultImg' src='hdr/hdr_dani_cathedral.hdr.jpg'/></a></td>
+				<td><a href='hdr/dani_cathedral.jpg'><img class='resultImg' src='hdr/dani_cathedral.jpg'/></a></td>
+				<td><a href='hdr/ldr_dani_cathedral.hdr.jpg'><img class='resultImg' src='hdr/ldr_dani_cathedral.hdr.jpg'/></a></td>
+			</tr>
+			<tr>
+				<td><a href='hdr/hdr_memorial.hdr.jpg'><img class='resultImg' src='hdr/hdr_memorial.hdr.jpg'/></a></td>
+				<td><a href='hdr/memorial.jpg'><img class='resultImg' src='hdr/memorial.jpg'/></a></td>
+				<td><a href='hdr/ldr_memorial.hdr.jpg'><img class='resultImg' src='hdr/ldr_memorial.hdr.jpg'/></a></td>
+			</tr>
+			<tr>
+				<td><a href='hdr/hdr_montreal.hdr.jpg'><img class='resultImg' src='hdr/hdr_montreal.hdr.jpg'/></a></td>
+				<td><a href='hdr/montreal.jpg'><img class='resultImg' src='hdr/montreal.jpg'/></a></td>
+				<td><a href='hdr/ldr_montreal.hdr.jpg'><img class='resultImg' src='hdr/ldr_montreal.hdr.jpg'/></a></td>
+			</tr>
+			<!--
+			<tr>
+				<td><a href='hdr/hdr_mtTamWest.hdr.jpg'><img class='resultImg' src='hdr/hdr_mtTamWest.hdr.jpg'/></a></td>
+				<td><a href='hdr/mtTamWest.jpg'><img class='resultImg' src='hdr/mtTamWest.jpg'/></a></td>
+				<td><a href='hdr/ldr_mtTamWest.hdr.jpg'><img class='resultImg' src='hdr/ldr_mtTamWest.hdr.jpg'/></a></td>
+			</tr>
+			-->
+			<tr>
+				<td><a href='hdr/hdr_nave.hdr.jpg'><img class='resultImg' src='hdr/hdr_nave.hdr.jpg'/></a></td>
+				<td><a href='hdr/nave.jpg'><img class='resultImg' src='hdr/nave.jpg'/></a></td>
+				<td><a href='hdr/ldr_nave.hdr.jpg'><img class='resultImg' src='hdr/ldr_nave.hdr.jpg'/></a></td>
+			</tr>
+			<tr>
+				<td><a href='hdr/hdr_rosette.hdr.jpg'><img class='resultImg' src='hdr/hdr_rosette.hdr.jpg'/></a></td>
+				<td><a href='hdr/rosette.jpg'><img class='resultImg' src='hdr/rosette.jpg'/></a></td>
+				<td><a href='hdr/ldr_rosette.hdr.jpg'><img class='resultImg' src='hdr/ldr_rosette.hdr.jpg'/></a></td>
+			</tr>
+			<tr>
+				<td><a href='hdr/hdr_spheron3.hdr.jpg'><img class='resultImg' src='hdr/hdr_spheron3.hdr.jpg'/></a></td>
+				<td><a href='hdr/spheron3.jpg'><img class='resultImg' src='hdr/spheron3.jpg'/></a></td>
+				<td><a href='hdr/ldr_spheron3.hdr.jpg'><img class='resultImg' src='hdr/ldr_spheron3.hdr.jpg'/></a></td>
+			</tr>
+			<tr>
+				<td><a href='hdr/hdr_spheronNapaValley.hdr.jpg'><img class='resultImg' src='hdr/hdr_spheronNapaValley.hdr.jpg'/></a></td>
+				<td><a href='hdr/spheronNapaValley.jpg'><img class='resultImg' src='hdr/spheronNapaValley.jpg'/></a></td>
+				<td><a href='hdr/ldr_spheronNapaValley.hdr.jpg'><img class='resultImg' src='hdr/ldr_spheronNapaValley.hdr.jpg'/></a></td>
+			</tr>
+			<tr>
+				<td><a href='hdr/hdr_spheronPriceWestern.hdr.jpg'><img class='resultImg' src='hdr/hdr_spheronPriceWestern.hdr.jpg'/></a></td>
+				<td><a href='hdr/spheronPriceWestern.jpg'><img class='resultImg' src='hdr/spheronPriceWestern.jpg'/></a></td>
+				<td><a href='hdr/ldr_spheronPriceWestern.hdr.jpg'><img class='resultImg' src='hdr/ldr_spheronPriceWestern.hdr.jpg'/></a></td>
+			</tr>
+			<tr>
+				<td><a href='hdr/hdr_spheronSiggraph2001.hdr.jpg'><img class='resultImg' src='hdr/hdr_spheronSiggraph2001.hdr.jpg'/></a></td>
+				<td><a href='hdr/spheronSiggraph2001.jpg'><img class='resultImg' src='hdr/spheronSiggraph2001.jpg'/></a></td>
+				<td><a href='hdr/ldr_spheronSiggraph2001.hdr.jpg'><img class='resultImg' src='hdr/ldr_spheronSiggraph2001.hdr.jpg'/></a></td>
+			</tr>
+			<tr>
+				<td><a href='hdr/hdr_tree.hdr.jpg'><img class='resultImg' src='hdr/hdr_tree.hdr.jpg'/></a></td>
+				<td><a href='hdr/tree.jpg'><img class='resultImg' src='hdr/tree.jpg'/></a></td>
+				<td><a href='hdr/ldr_tree.hdr.jpg'><img class='resultImg' src='hdr/ldr_tree.hdr.jpg'/></a></td>
+			</tr>
+		</table>
+		<br/><br/>
+		<p><a href="index.html">Back to the main page</a></p>
+		<br/><br/>
+	</div>
+</body>
+</html>
