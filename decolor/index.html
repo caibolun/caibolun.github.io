@@ -1,0 +1,526 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-------------------------------------------------------------------->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../css/main.css" rel="stylesheet" media="all">
+<link rel="stylesheet" href="css/twentytwenty.css">
+<link rel="stylesheet" href="css/owl.carousel.css">
+
+<meta name="description" content="DehazeNet: An End-to-End System for Single Image Haze Removal" />
+<title>Perception Preserving Decolorization</title>
+<style type="text/css">
+
+
+</style>
+<!-------------------------------------------------------------------->
+<script type="text/javascript" async="" src="./css/ga.js"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39824124-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82384246-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+
+<!-------------------------------------------------------------------->
+
+<body>
+<h2 class="auto-style1">Perception Preserving Decolorization</h2>
+<p class="auto-style7"  align="center"><a href="https://caibolun.github.io/">Bolun Cai</a> &nbsp;&nbsp;&nbsp;&nbsp;Xiangmin Xu&nbsp;&nbsp;&nbsp;&nbsp;Xiaofen Xing</p>
+<p class="auto-style7"  align="center">South China University of Technology</p>
+
+<p align=left>&nbsp;</p>
+<p align="center">
+<table style="width:840px" align="center">
+<tr>
+	<td><img width=800px alt="" src="framework.jpg"></td>	
+</tr>
+<tr>
+	<td><p class="auto-style5">Perception preserving decolorization. We use a loss network (VGG-19) pretrained for object categorization to define multi-level perceptual loss functions, which measure perceptual differences between the grayscale and color images. The loss network remains fixed during the optimization process.</p></td>
+</tr>
+</table>
+
+<p class="style2"><strong><span class="auto-style6">Abstract</span></strong></p>
+<p class="auto-style5">Decolorization is a basic tool to transform a color image into a grayscale image, which is used in digital printing, stylized black-and-white photography, and in many single-channel image processing applications. While recent researches focus on retaining as much as possible meaningful visual features and color contrast. In this paper, we explore how to use deep neural networks for decolorization, and propose an optimization approach aiming at perception preserving. The system uses deep representations to extract content information based on human visual perception, and automatically selects suitable grayscale for decolorization. The evaluation experiments show the effectiveness of the proposed method.</p>
+<p class="auto-style5">&nbsp;</p>
+
+<p class="auto-style4" id=results><strong>Color-to-gray Conversion</strong></p>
+<table align="center">
+<tr>
+<td><img width=250px src="sunrise/input.png"></td>
+<td><img width=250px src="sunrise/graynet.png"></td>
+</tr>
+<tr>
+<td>(a) Input</td>
+<td>(b) Ours</td>
+</tr>
+</table>
+<table  align="center">
+<tr>
+<td><img width=150px src="sunrise/cie_y.png"></td>
+<td><img width=150px src="sunrise/rgb2gray.png"></td>
+<td><img width=150px src="sunrise/color2gray.png"></td>
+<td><img width=150px src="sunrise/bala.png"></td>
+<td><img width=150px src="sunrise/rasche.png"></td>
+<td><img width=150px src="sunrise/cpcolor2gray.png"></td>
+</tr>
+<tr>
+<td>(c) L of CIELab</td>
+<td>(d) Matalab</td>
+<td>(e) Color2Gray</td>
+<td>(f) Bala04</td>
+<td>(g) Rasche05</td>
+<td>(h) Lu12</td>
+</tr>
+</table>
+
+<p class="style2"><strong><span class="auto-style6">Results</span></strong></p>
+<table align="center">
+<tr>
+<td width=300px>Color Input</td>
+<td width=300px>State-of-the-art</td>
+<td width=300px>Ours</td>
+</tr>
+</table>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/1.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/1.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/1.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/1.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/1.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/1.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/1.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/1.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/1.jpg">
+</div>
+<!-- A Show
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/2.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/2.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/2.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/2.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/2.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/2.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/2.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/2.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/2.jpg">
+</div>
+ -->
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/3.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/3.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/3.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/3.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/3.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/3.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/3.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/3.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/3.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/4.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/4.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/4.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/4.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/4.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/4.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/4.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/4.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/4.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/5.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/5.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/5.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/5.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/5.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/5.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/5.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/5.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/5.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/6.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/6.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/6.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/6.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/6.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/6.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/6.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/6.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/6.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/7.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/7.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/7.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/7.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/7.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/7.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/7.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/7.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/7.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/8.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/8.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/8.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/8.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/8.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/8.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/8.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/8.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/8.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/9.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/9.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/9.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/9.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/9.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/9.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/9.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/9.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/9.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/10.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/10.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/10.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/10.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/10.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/10.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/10.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/10.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/10.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/11.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/11.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/11.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/11.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/11.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/11.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/11.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/11.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/11.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/12.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/12.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/12.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/12.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/12.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/12.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/12.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/12.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/12.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/13.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/13.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/13.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/13.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/13.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/13.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/13.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/13.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/13.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/14.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/14.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/14.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/14.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/14.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/14.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/14.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/14.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/14.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/15.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/15.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/15.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/15.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/15.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/15.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/15.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/15.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/15.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/16.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/16.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/16.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/16.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/16.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/16.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/16.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/16.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/16.jpg">
+</div>
+<!-- A Show
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/17.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/17.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/17.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/17.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/17.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/17.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/17.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/17.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/17.jpg">
+</div>
+ -->
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/18.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/18.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/18.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/18.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/18.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/18.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/18.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/18.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/18.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/19.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/19.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/19.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/19.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/19.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/19.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/19.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/19.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/19.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/20.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/20.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/20.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/20.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/20.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/20.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/20.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/20.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/20.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/21.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/21.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/21.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/21.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/21.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/21.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/21.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/21.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/21.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/22.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/22.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/22.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/22.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/22.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/22.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/22.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/22.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/22.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/23.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/23.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/23.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/23.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/23.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/23.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/23.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/23.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/23.jpg">
+</div>
+<!-- A Show -->
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/color/24.jpg">
+</div>
+<div id="owl-demo" style="width: 300px;" class="owl-carousel">
+	<a class="item"><img src="results/cielab/24.jpg"><b></b><span><font color="red">L of CIELab</font></span></a>
+	<a class="item"><img src="results/rgb2gray/24.jpg"><b></b><span><font color="red">Matlab</font></span></a>
+    <a class="item"><img src="results/bala04/24.jpg"><b></b><span><font color="red">Bala04</font></span></a>
+	<a class="item"><img src="results/color2gray/24.jpg"><b></b><span><font color="red">Color2Gray</font></span></a>
+	<a class="item"><img src="results/rasche05/24.jpg"><b></b><span><font color="red">Rasche05</font></span></a>
+    <a class="item"><img src="results/smith08/24.jpg"><b></b><span><font color="red">Smith08</font></span></a>
+	<a class="item"><img src="results/cpcolor2gray/24.jpg"><b></b><span><font color="red">Lu12</font></span></a>
+</div>
+<div style="margin: 6px; float: left;">
+	<img width=300px src="results/deepdecolor/24.jpg">
+</div>
+
+<p id="downloads", class="auto-style4"><strong>Downloads</strong></p>
+
+<table cellSpacing=4 cellPadding=2 border=0 style="width: 90%">
+<tr COLSPAN="2">
+<td align="center" valign="center">
+<img src="paper_thumbnail.jpg" align="middle" alt="Snapshot for paper" class="pdf" width="170" /></td>
+<td align="left" class="auto-style5">
+&quot;Perception Preserving Decolorization&quot;<br>
+Bolun Cai, Xiangmin Xu, Xiaofen Xing<br>
+submitted to IEEE International Conference on Image Processing (<b>ICIP</b>), 2018  <br><br>
+<img alt="" height="32" src="../images/pdf_icon.gif" width="31">&nbsp;&nbsp;&nbsp;[<a href="#">Paper (4.88MB)</a>]<br>
+<img alt="" height="36" src="../images/zip_icon.jpg" width="36">&nbsp;&nbsp;[<a href='https://github.com/caibolun/deepdecolor/archive/master.zip'>Code</a>] <br>
+</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+<p class="auto-style1"><font color="#999999">Last update: Tue 20, 2018</font></p>
+
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.event.move.js"></script>
+<script src="js/jquery.twentytwenty.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script>
+window.onload =function(){
+$('.twentytwenty-container').twentytwenty();
+}
+$(function(){
+	$('.owl-carousel').owlCarousel({items: 1,navigation: true
+	}).hover(function(){$('.owl-buttons').show();
+	}, function(){$('.owl-buttons').hide();});
+});
+</script>
+</body>
+
+</html>
